@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ef10res/cse340-course-repo#readme",
   "dependencies": {
+    "ejs": "^5.0.2",
     "express": "^5.2.1"
   },
   "devDependencies": {

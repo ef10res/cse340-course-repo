@@ -1,0 +1,19 @@
+{
+  "name": "cse340-course-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ef10res/cse340-course-repo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ef10res/cse340-course-repo/issues"
+  },
+  "homepage": "https://github.com/ef10res/cse340-course-repo#readme"
+}

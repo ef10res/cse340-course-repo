@@ -77,3 +77,58 @@ FOREIGN KEY (organization_id)
 REFERENCES organization(organization_id);
 
 SELECT * FROM service_project
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL
+        REFERENCES service_project(project_id)
+        ON DELETE CASCADE,
+
+    category_id INTEGER NOT NULL
+        REFERENCES category(category_id)
+        ON DELETE CASCADE,
+
+    PRIMARY KEY (project_id, category_id)
+);
+
+INSERT INTO category (name)
+VALUES
+('Environmental Service'),
+('Education and Youth'),
+('Community Assistance');
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+
+-- Environmental Service
+(1, 1), -- Community Clean-Up Drive
+(3, 1), -- Tree Planting Initiative
+(6, 1), -- Beach Cleanup Program
+(8, 1), -- Recycling Awareness Campaign
+(9, 1), -- Community Garden Build
+
+-- Education and Youth
+(5, 2), -- School Supply Donation
+(10, 2), -- Tech for Kids Workshop
+(13, 2), -- Youth Mentorship Program
+
+-- Community Assistance
+(2, 3), -- Food Bank Support
+(4, 3), -- Homeless Shelter Help
+(7, 3), -- Senior Assistance Program
+(11, 3), -- Health Awareness Fair
+(12, 3), -- Blood Donation Drive
+(14, 3), -- Disaster Relief Prep
+(15, 3); -- Mental Health Workshop
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+(10, 3); -- Tech for Kids Workshop also helps community
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+(13, 3); -- Youth Mentorship also community assistance

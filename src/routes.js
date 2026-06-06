@@ -9,6 +9,7 @@ import { showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganiz
 import { showCategoryDetailsPage } from './controllers/categories.js';
 import { processNewProjectForm, showNewProjectForm, projectValidation } from './controllers/upcoming_service_projects.js';
 const router = express.Router();
+import { showEditProjectForm, processEditProjectForm } from './controllers/upcoming_service_projects.js';
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
@@ -35,5 +36,7 @@ router.post('/new-project', projectValidation, processNewProjectForm);
 // Routes to handle the assign categories to project form
 router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+router.get('/edit-project/:id', showEditProjectForm);
+router.post('/edit-project/:id', processEditProjectForm);
 
 export default router;

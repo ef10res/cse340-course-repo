@@ -13,6 +13,7 @@ import { showCategoryDetailsPage } from './controllers/categories.js';
 import { processNewProjectForm, showNewProjectForm, projectValidation } from './controllers/upcoming_service_projects.js';
 const router = express.Router();
 import { showEditProjectForm, processEditProjectForm } from './controllers/upcoming_service_projects.js';
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard } from './controllers/users.js';
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
@@ -53,5 +54,14 @@ router.post(
     categoryValidationRules,
     processEditCategoryForm
 );
+// User registration routes
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
+// User login routes
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
+// Protected dashboard route
+router.get('/dashboard', requireLogin, showDashboard);
 
 export default router;

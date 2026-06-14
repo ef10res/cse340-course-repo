@@ -2,6 +2,7 @@ import { getAllProjects, getUpcomingProjects, getProjectDetails, updateProject }
 import { getCategoriesByProjectId, createProject } from '../models/projects.js';
 import { getAllOrganizations } from "../models/organizations.js";
 import { body, validationResult } from 'express-validator';
+import { isUserVolunteeringForProject } from "../models/volunteers.js";
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
 
@@ -39,10 +40,20 @@ const showProjectDetailsPage = async (req, res) => {
     const project = await getProjectDetails(id);
     const categories = await getCategoriesByProjectId(id);
 
+    let isVolunteering = false;
+
+    if (req.session.user) {
+        isVolunteering = await isUserVolunteeringForProject(
+            req.session.user.user_id,
+            id
+        )
+    }
+
     res.render('project', {
         title: project.title,
         project,
-        categories
+        categories,
+        isVolunteering
     });
 };
 

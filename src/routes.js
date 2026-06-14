@@ -14,6 +14,9 @@ import { processNewProjectForm, showNewProjectForm, projectValidation } from './
 const router = express.Router();
 import { showEditProjectForm, processEditProjectForm } from './controllers/upcoming_service_projects.js';
 import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage } from './controllers/users.js';
+import {
+    volunteerForProject, removeVolunteerFromProjectController
+} from './controllers/volunteers.js'
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
@@ -69,5 +72,7 @@ router.get(
     requireRole('admin'),
     showUsersPage
 );
+router.post('/project/:id/volunteer', requireLogin, volunteerForProject);
+router.post('/project/:id/remove-volunteer', requireLogin, removeVolunteerFromProjectController);
 
 export default router;

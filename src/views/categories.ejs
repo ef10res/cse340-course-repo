@@ -15,7 +15,9 @@
                 </li>
                 <% }); %>
         </ul>
+        <% if (user && user.role_name==='admin' ) { %>
         <p><a href="/new-category">Add a New Service Project Category</a></p>
+        <% } %>
     </main>
 
 <%- include('partials/footer') %>

@@ -108,4 +108,15 @@ const requireRole = (role) => {
     };
 };
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
+import { getAllUsers } from '../models/users.js';
+
+const showUsersPage = async (req, res) => {
+    const users = await getAllUsers();
+
+    res.render('users', {
+        title: 'Registered Users',
+        users
+    });
+};
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage };

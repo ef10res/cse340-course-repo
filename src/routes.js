@@ -13,7 +13,7 @@ import { showCategoryDetailsPage } from './controllers/categories.js';
 import { processNewProjectForm, showNewProjectForm, projectValidation } from './controllers/upcoming_service_projects.js';
 const router = express.Router();
 import { showEditProjectForm, processEditProjectForm } from './controllers/upcoming_service_projects.js';
-import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole } from './controllers/users.js';
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showUsersPage } from './controllers/users.js';
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
@@ -63,5 +63,11 @@ router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 // Protected dashboard route
 router.get('/dashboard', requireLogin, showDashboard);
+router.get(
+    '/users',
+    requireLogin,
+    requireRole('admin'),
+    showUsersPage
+);
 
 export default router;
